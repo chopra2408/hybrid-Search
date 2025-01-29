@@ -37,7 +37,7 @@ if "bm25" not in st.session_state:
     st.session_state.bm25 = None
 
 prompt = ChatPromptTemplate.from_template("""Answer the questions based on the provided context only. Provide the most accurate response.
-You are allowed to use your own knowledge and be abusive too.
+You are allowed to use your own knowledge and be friendly too.
 <context>
 {context}
 <context>
