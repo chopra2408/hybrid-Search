@@ -1,0 +1,11 @@
+rank_bm25
+langchain
+langchain-groq
+python-dotenv
+langchain-core
+python-docx
+streamlit
+pdfplumber
+numpy
+faiss-cpu
+langchain-ollama
