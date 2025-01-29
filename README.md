@@ -1,4 +1,5 @@
-Hybrid Search with FAISS and BM25
+**Hybrid Search with FAISS and BM25**
+
 📌 Overview
 This project implements a hybrid search engine combining FAISS (vector-based similarity search) and BM25 (lexical search) to retrieve the most relevant documents for a given query. It utilizes LangChain, Groq’s Llama3-8B, FAISS, and BM25 to process and analyze documents efficiently.
 
