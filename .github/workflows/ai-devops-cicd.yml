@@ -1,0 +1,43 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Build (if applicable)
+      run: echo "No build step for Python"
+
+    - name: Test
+      run: echo "Running tests..."
+
+    - name: Archive application
+      run: |
+        zip -r app.zip . -x '*.git*' -x 'node_modules/*' -x 'venv/*' -x '*.cache*'
+
+    - name: Deploy
+      if: false
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+      run: |
+        echo "$SSH_PRIVATE_KEY" > private_key
+        chmod 600 private_key
+        scp -i private_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null app.zip user@server_ip:~/app.zip
+        ssh -i private_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null user@server_ip 'bash ~/deploy.sh'
